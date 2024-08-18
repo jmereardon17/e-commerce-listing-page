@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const {
@@ -29,7 +30,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <span className="product-attribute product-attribute--space-saver">SPACE SAVER</span>
           )}
           <Link to={`/products/${id}`}>
-            <img src={url} width={280} height={280} alt={imageAltText} className="product-card-image" />
+            <LazyLoadImage src={url} width={280} height={280} alt={imageAltText} className="product-card-image" />
           </Link>
           {isBestSeller && <div className="product-card-image-banner">Best seller</div>}
           <button type="button" className="product-image-btn">
@@ -38,7 +39,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         <div className="product-card-body">
-          <img src={brand.brandImage.url} width={60} height={19} alt={brand.name} className="block mb-2" />
+          <LazyLoadImage
+            src={brand.brandImage.url}
+            width={60}
+            height={19}
+            alt={brand.name}
+            className="block mb-2"
+          />
 
           <div className="flex">
             <h3 className="product-name">{productName}</h3>

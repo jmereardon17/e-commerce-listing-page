@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Product = ({ products }: ProductProps) => {
   const { id } = useParams();
@@ -8,7 +9,7 @@ const Product = ({ products }: ProductProps) => {
 
   useEffect(() => {
     if (!product) return navigate('/');
-  }, [id]);
+  }, [product, navigate]);
 
   const {
     productName,
@@ -25,7 +26,7 @@ const Product = ({ products }: ProductProps) => {
     <>
       <section className="product">
         <div className="product-image-container">
-          <img src={url} alt={imageAltText} width={450} height={450} />
+          <LazyLoadImage src={url} alt={imageAltText} width={450} height={450} />
         </div>
         <section className="product-details">
           <h2 className="product-name">{productName}</h2>
